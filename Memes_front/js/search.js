@@ -72,21 +72,31 @@ function buildKeywordsList(img) {
     $display.addClass("keywords");
     for (let word in img.keywords) {
         if (img.keywords.hasOwnProperty(word)) {
-            let $span = $("<span>" + img.keywords[word] + "</span>")
+            let $span = $("<span>" + img.keywords[word] + "</span>");
             let $li = $("<li>");
             $li.attr("path", img.path);
             $li.attr("keyword", img.keywords[word]);
             $li.attr("id", word);
             let $upvote = $("<input type='button' value='+' class='vote_button'>");
             let $downvote = $("<input type='button' value='-' class='vote_button'>");
-            $upvote.attr("onclick", "upvote(" + img.path + ", " + img.keywords[word] + ")");
-            $downvote.attr("onclick", "downvote(" + img.path + ", " + img.keywords[word] + ")");
+            $upvote.attr("onclick", "upvote(\"" + img.path + "\", \"" + img.keywords[word] + "\")");
+            $downvote.attr("onclick", "downvote(\"" + img.path + "\", \"" + img.keywords[word] + "\")");
             $li.append($upvote);
             $li.append($downvote);
             $li.append($span);
             $display.append($li);
         }
     }
+
+    // Add input
+    let $input_li = $("<li>");
+    let $input = $("<input type='text' placeholder='new keyword...'>");
+    let $submit = $("<input type='button' value='submit'>");
+    $submit.attr("onclick", "upvote(\"" + img.path + "\", \"" + $input.val() + "\")");
+
+    $input_li.append($input);
+    $input_li.append($submit);
+    $display.append($input_li);
     return $display;
 }
 
