@@ -33,9 +33,12 @@ function displayNoResults() {
 
 function displayResults(data) {
     $("#memes_small").empty();
+    let count = 0;
     for (let img in data) {
         if (data.hasOwnProperty(img)) {
+            data[img].id = "img_" + count;
             displayImage(data[img]);
+            count++;
         }
     }
     setDisplay(data[0]);
@@ -90,9 +93,9 @@ function buildKeywordsList(img) {
 
     // Add input
     let $input_li = $("<li>");
-    let $input = $("<input id=" + img.path+ " type='text' placeholder='new keyword...'>");
+    let $input = $("<input id=" + img.id + " type='text' placeholder='new keyword...'>");
     let $submit = $("<input type='button' value='submit'>");
-    $submit.attr("onclick", "upvote(\"" + img.path + "\", $(\"#" + img.path + "\").val())");
+    $submit.attr("onclick", "upvote(\"" + img.path + "\", $(\"#" + img.id + "\").val())");
 
     $input_li.append($input);
     $input_li.append($submit);
