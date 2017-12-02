@@ -3,11 +3,11 @@ let search = function() {
     let value = $("#search").val();
     let request = "/search/" + value;
     // FOR TESTING
-    let data = buildTestData();
-    displayResults(data);
-    // $.get(request, function (data) {
-    //     displayResults(JSON.parse(data));
-    // });
+    //let data = buildTestData();
+    //displayResults(data);
+    $.get(request, function (data) {
+        displayResults(JSON.parse(data));
+    });
 };
 
 function displayResults(data) {
