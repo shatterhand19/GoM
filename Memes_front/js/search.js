@@ -20,10 +20,20 @@ function search() {
     });
 }
 
+let time = 2;
+setInterval(function () {
+    time++;
+}, 200);
+
 function onKeyDownSearch(event) {
-    if (event.keyCode === 13) {
+    if (time > 2) {
         search();
+        time = 0;
     }
+
+    // if (event.keyCode === 13) {
+    //     search();
+    // }
 }
 
 function displayNoResults() {
