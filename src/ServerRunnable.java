@@ -89,6 +89,7 @@ public class ServerRunnable implements Runnable {
                     System.out.println("Json response: " + response);
                     OutputHandler.sendJson(response, outToClient);
                 } else {
+
                     OutputHandler.writeOutput(fileName, outToClient);
                     client.close();
                 }

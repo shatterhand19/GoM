@@ -2,9 +2,7 @@ let search = function() {
     // get value from search bar
     let value = $("#search").val();
     let request = "/search/" + value;
-    // FOR TESTING
-    // let data = buildTestData();
-    // displayResults(data);
+
     $.ajax(request, {
         dataType: "text",
         success: function(data) {
@@ -19,7 +17,7 @@ let search = function() {
         error: function () {
             displayNoResults();
         }
-    })
+    });
 };
 
 function displayNoResults() {
@@ -74,6 +72,7 @@ function setDisplay(img) {
 function buildKeywordsList(img) {
     let $display = $("<ul>");
     $display.addClass("keywords");
+    let count = 0;
     for (let word in img.keywords) {
         if (img.keywords.hasOwnProperty(word)) {
             let $span = $("<span>" + img.keywords[word] + "</span>");
@@ -89,6 +88,10 @@ function buildKeywordsList(img) {
             $li.append($downvote);
             $li.append($span);
             $display.append($li);
+            count++;
+        }
+        if (count > 15) {
+            break;
         }
     }
 

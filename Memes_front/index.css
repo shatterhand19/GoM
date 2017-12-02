@@ -4,8 +4,9 @@ body {
 
 #search_content {
     text-align: center;
-    margin: 5% auto 2% auto;
+    margin: 5vh auto 0 auto;
     vertical-align: bottom;
+    height: 10vh;
 }
 
 #logo {
@@ -35,7 +36,8 @@ body {
 
 #memes_small {
     width: 100%;
-    margin: 3% auto 0 auto;
+    height: 25vh;
+    margin: 5vh auto 0 auto;
 }
 
 .meme {
@@ -53,11 +55,10 @@ body {
 
 #display {
     width: 100%;
-    max-height: 40%;
+    height: 50vh;
     text-align: center;
     padding: 4px;
     vertical-align: middle;
-    margin-bottom: 1%;
 }
 
 .helper {
