@@ -7,7 +7,7 @@ function search() {
         dataType: "text",
         success: function(data) {
             console.log(data);
-            $("#content").css("background-color", "white");
+            $("#content").animate({ backgroundColor: "white" }, "slow");
             let json = JSON.parse(data);
             if (json.length > 0) {
                 displayResults(json);
