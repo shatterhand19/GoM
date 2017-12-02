@@ -67,6 +67,10 @@ public class ImageDatabase {
         return keywords;
     }
 
+    public ArrayList<Keyword> getKeywordsObj(String imageUrl) {
+        return image_keywords.get(imageUrl);
+    }
+
     public Keyword getKeyword(String imageURL, String word) {
         ArrayList<Keyword> keywords = image_keywords.get(imageURL);
         for (Keyword k : keywords) {
