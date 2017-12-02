@@ -11,7 +11,7 @@ public class Parser {
         int end = json.indexOf("bounding_poly") - 8;
         String text;
         if (start > 0 && end > 0 && start < json.length() && end < json.length()) {
-            return json.substring(start, end).replace("\\n", " ").replace("\\'", "'").replace("\\\"", "\"");
+            return json.substring(start, end).replace("\\n", " ").replace("\'", "'").replace("\\\"", "\"");
         }
         return "";
     }
