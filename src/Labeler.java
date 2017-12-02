@@ -20,8 +20,8 @@ import java.util.List;
 
 public class Labeler {
     private static String[] dirs;
-    private static File image_db = new File("db/image_db");
-    private static File keyw_db = new File("db/keyw_db");
+    private static File image_db = new File("db/image_db2");
+    private static File keyw_db = new File("db/keyw_db2");
     private static ImageDatabase image_db_obj = new ImageDatabase();
     private static KeywordDatabase keyw_db_obj = new KeywordDatabase();
     public static void main(String... args) throws Exception {
