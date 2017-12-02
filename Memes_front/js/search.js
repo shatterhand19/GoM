@@ -102,7 +102,7 @@ function buildKeywordsList(img) {
 
 function upvote(imgPath, keyword) {
     $.ajax({
-        url: imgPath + '/' + keyword + '/' + 'up',
+        url: imgPath + ':' + keyword + ':' + 'up',
         type: 'POST',
         success: function () {
             alert("Successfully voted for " + keyword);
@@ -115,7 +115,7 @@ function upvote(imgPath, keyword) {
 
 function downvote(imgPath, keyword) {
     $.ajax({
-        url: imgPath + '/' + keyword + '/' + 'down',
+        url: imgPath + ':' + keyword + ':' + 'down',
         type: 'POST',
         success: function () {
             alert("Successfully voted for " + keyword);
