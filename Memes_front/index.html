@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Of Memes Search</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/search.js"></script>
+</head>
+<body>
+    <div id="search_content">
+        <img src="game-of-thrones.svg" id="logo">
+        <br>
+        <input type="search" id="search" placeholder="Find a GoT Meme!">
+        <input type="button" id="search_button" value="Search" onclick="search()">
+    </div>
+    <div id="memes">
+        <span class="helper"></span>
+        <div id="display"></div>
+        <div id="memes_small"></div>
+    </div>
+</body>
+</html>

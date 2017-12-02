@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+}
+
+#search_content {
+    text-align: center;
+    margin: 5% auto 2% auto;
+    vertical-align: bottom;
+}
+
+#logo {
+    width: 75%;
+    max-width: 400px;
+}
+
+#search {
+    width: 80%;
+    max-width: 500px;
+    font-size: 15pt;
+    vertical-align: bottom;
+    padding-left: 10px;
+}
+
+#search_button {
+    font-size: 15pt;
+    vertical-align: bottom;
+}
+
+#memes {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
+#memes_small {
+    width: 80%;
+    max-width: 1000px;
+    position: absolute;
+    bottom: 3%;
+    margin: 0 auto 0 auto;
+}
+
+.meme {
+    width: 20%;
+    min-width: 200px;
+    max-height: 100px;
+    max-width: 20%;
+    float: left;
+    overflow: hidden;
+}
+
+.meme img {
+    width: 100%;
+}
+
+#display {
+    width: 100%;
+    text-align: center;
+    padding: 4px;
+    vertical-align: middle;
+    margin-bottom: 1%;
+    height: calc(70% - 250px);
+}
+
+.helper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#display img {
+    max-width: 100%;
+    max-height: 500px;
+    padding: 0;
+    vertical-align: middle;
+    margin: 0;
+}
