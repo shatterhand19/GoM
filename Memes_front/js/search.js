@@ -6,6 +6,7 @@ let search = function() {
     // let data = buildTestData();
     // displayResults(data);
     $.get(request, function (data) {
+        console.log(data);
         displayResults(JSON.parse(data));
     });
 };
