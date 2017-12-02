@@ -1,4 +1,4 @@
-let search = function() {
+function search() {
     // get value from search bar
     let value = $("#search").val();
     let request = "/search/" + value;
@@ -18,7 +18,13 @@ let search = function() {
             displayNoResults();
         }
     });
-};
+}
+
+function onKeyDownSearch(event) {
+    if (event.keyCode === 13) {
+        search();
+    }
+}
 
 function displayNoResults() {
     $("#memes_small").empty();
