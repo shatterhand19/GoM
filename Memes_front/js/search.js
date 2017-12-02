@@ -137,6 +137,7 @@ function downvote(imgPath, keyword) {
     $.ajax({
         url: imgPath + ':' + keyword + ':' + 'down',
         type: 'POST',
+        dataType: 'text',
         success: function () {
             alert("Successfully voted for " + keyword);
         },
