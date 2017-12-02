@@ -8,6 +8,7 @@ let search = function() {
     $.ajax(request, {
         dataType: "application/json",
         success: function(data) {
+            console.log(data);
             displayResults(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
