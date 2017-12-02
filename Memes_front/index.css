@@ -11,6 +11,7 @@ body {
 #logo {
     width: 75%;
     max-width: 400px;
+    margin-bottom: 5px;
 }
 
 #search {
@@ -59,7 +60,6 @@ body {
     padding: 4px;
     vertical-align: middle;
     margin-bottom: 1%;
-    height: calc(70% - 250px);
 }
 
 .helper {
@@ -69,9 +69,16 @@ body {
 }
 
 #display img {
-    max-width: 100%;
+    max-width: 80%;
     max-height: 500px;
     padding: 0;
     vertical-align: middle;
     margin: 0;
+}
+
+#display .keywords {
+    max-width: 20%;
+    text-align: left;
+    list-style-type: none;
+    float: right;
 }
