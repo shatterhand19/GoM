@@ -72,7 +72,8 @@ function buildKeywordsList(img) {
     $display.addClass("keywords");
     for (let word in img.keywords) {
         if (img.keywords.hasOwnProperty(word)) {
-            let $li = $("<li>" + img.keywords[word] + "</li>");
+            let $span = $("<span>" + img.keywords[word] + "</span>")
+            let $li = $("<li>");
             $li.attr("path", img.path);
             $li.attr("keyword", img.keywords[word]);
             $li.attr("id", word);
@@ -82,6 +83,7 @@ function buildKeywordsList(img) {
             $downvote.attr("onclick", "downvote(" + img.path + ", " + img.keywords[word] + ")");
             $li.append($upvote);
             $li.append($downvote);
+            $li.append($span);
             $display.append($li);
         }
     }
