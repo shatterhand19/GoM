@@ -69,15 +69,35 @@ body {
 
 #display img {
     max-width: 70%;
-    max-height: 500px;
+    max-height: 100%;
     padding: 0;
     vertical-align: middle;
     margin: 0;
 }
 
-#display .keywords {
+#display .keywords_display {
     max-width: 20%;
+    height: 100%;
     text-align: left;
-    list-style-type: none;
     float: right;
+}
+
+#display #keywords_div {
+    height: 80%;
+    display: block;
+    overflow-y: scroll;
+}
+
+#display .keywords {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#display .keyword {
+   margin-left: 5%;
+}
+
+#display .title {
+    margin-bottom: 5px;
 }

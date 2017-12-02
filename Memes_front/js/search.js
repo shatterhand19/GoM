@@ -20,22 +20,6 @@ function search() {
     });
 }
 
-let time = 2;
-setInterval(function () {
-    time++;
-}, 200);
-
-function onKeyDownSearch(event) {
-    if (time > 2) {
-        search();
-        time = 0;
-    }
-
-    // if (event.keyCode === 13) {
-    //     search();
-    // }
-}
-
 function displayNoResults() {
     $("#memes_small").empty();
     let $display = $("#display");
@@ -86,12 +70,19 @@ function setDisplay(img) {
 }
 
 function buildKeywordsList(img) {
-    let $display = $("<ul>");
-    $display.addClass("keywords");
+    let $display = $("<div>");
+    $display.addClass("keywords_display");
+
+    let $title = $("<h4>Vote for keywords</h4>");
+    $title.addClass("title");
+
+    let $list = $("<ul>");
+    $list.addClass("keywords");
     let count = 0;
     for (let word in img.keywords) {
         if (img.keywords.hasOwnProperty(word)) {
             let $span = $("<span>" + img.keywords[word] + "</span>");
+            $span.addClass("keyword");
             let $li = $("<li>");
             $li.attr("path", img.path);
             $li.attr("keyword", img.keywords[word]);
@@ -103,22 +94,26 @@ function buildKeywordsList(img) {
             $li.append($upvote);
             $li.append($downvote);
             $li.append($span);
-            $display.append($li);
+            $list.append($li);
             count++;
-        }
-        if (count > 15) {
-            break;
         }
     }
 
     // Add input
-    let $input_li = $("<li>");
+    let $input_li = $("<div>");
     let $input = $("<input id=" + img.id + " type='text' placeholder='new keyword...'>");
     let $submit = $("<input type='button' value='submit'>");
     $submit.attr("onclick", "upvote(\"" + img.path + "\", $(\"#" + img.id + "\").val())");
 
     $input_li.append($input);
     $input_li.append($submit);
+
+    let $list_div = $("<div>");
+    $list_div.attr("id", "keywords_div");
+    $list_div.append($list);
+
+    $display.append($title);
+    $display.append($list_div);
     $display.append($input_li);
     return $display;
 }
