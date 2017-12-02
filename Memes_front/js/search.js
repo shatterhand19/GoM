@@ -90,9 +90,9 @@ function buildKeywordsList(img) {
 
     // Add input
     let $input_li = $("<li>");
-    let $input = $("<input type='text' placeholder='new keyword...'>");
+    let $input = $("<input id=" + img.path+ " type='text' placeholder='new keyword...'>");
     let $submit = $("<input type='button' value='submit'>");
-    $submit.attr("onclick", "upvote(\"" + img.path + "\", $input.val())");
+    $submit.attr("onclick", "upvote(\"" + img.path + "\", $(\"#" + img.path + "\").val())");
 
     $input_li.append($input);
     $input_li.append($submit);
