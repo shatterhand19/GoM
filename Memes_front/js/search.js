@@ -104,6 +104,7 @@ function upvote(imgPath, keyword) {
     $.ajax({
         url: imgPath + ':' + keyword + ':' + 'up',
         type: 'POST',
+        dataType: 'text',
         success: function () {
             alert("Successfully voted for " + keyword);
         },
