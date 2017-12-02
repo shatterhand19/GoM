@@ -62,7 +62,7 @@ public class ServerRunnable implements Runnable {
             if (headerValue.containsKey("GET")) {
                 StringTokenizer tokens = new StringTokenizer(headerValue.get("GET"));
                 fileName = tokens.nextToken();
-
+                System.out.println(fileName);
                 if (fileName.startsWith("/search/")) {
                     System.out.println(fileName);
                 } else {

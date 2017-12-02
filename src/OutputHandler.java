@@ -13,9 +13,15 @@ final class OutputHandler {
     private static HashMap<String, String> extensions = new HashMap<>();
 
     static {
+        extensions.put(".html", "Content-Type:text/html; charset=UTF-8\r\n");
         extensions.put(".png", "Content-Type:image/png; charset=UTF-8\r\n");
         extensions.put(".jpg", "Content-Type:image/jpg; charset=UTF-8\r\n");
         extensions.put(".jpeg", "Content-Type:image/jpeg; charset=UTF-8\r\n");
+        extensions.put(".css", "Content-Type:text/css; charset=UTF-8\r\n");
+        extensions.put(".txt", "Content-Type:text/plain; charset=UTF-8\r\n");
+        extensions.put(".svg", "Content-Type:image/svg+xml; charset=UTF-8\r\n");
+        extensions.put(".ico", "Content-Type:image/*; charset=UTF-8\r\n");
+        extensions.put(".js", "Content-Type:application/javascript; charset=UTF-8\r\n");
     }
 
     /**
@@ -26,15 +32,17 @@ final class OutputHandler {
      * @throws IOException
      */
     static void writeOutput(String fileName, DataOutputStream out) throws IOException {
+        if (fileName.equals("/")) fileName = "index.html";
         if (fileName.startsWith("/")) {
             fileName = fileName.substring(1);
         }
 
         //If the file type is supported
         File file = new File(System.getProperty("user.dir") + "/Memes_front", fileName);
+        System.out.println(file.getPath());
         int numOfBytes = (int) file.length();
         try {
-            FileInputStream inFile = new FileInputStream(fileName);
+            FileInputStream inFile = new FileInputStream(file);
             byte[] fileInBytes = new byte[numOfBytes];
             int r = inFile.read(fileInBytes);
             //Check if all bytes were written; if yes, send them; if not, transmit a error page
