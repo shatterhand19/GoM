@@ -5,11 +5,15 @@ let search = function() {
     // FOR TESTING
     // let data = buildTestData();
     // displayResults(data);
-    $.get(request, function (data) {
-        console.log("HERE!");
-        console.log(data);
-        displayResults(JSON.parse(data));
-    });
+    $.ajax(request, {
+        dataType: "application/json",
+        success: function(data) {
+            displayResults(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + ": " + errorThrown);
+        }
+    })
 };
 
 function displayResults(data) {
