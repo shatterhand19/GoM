@@ -11,7 +11,7 @@ public class Parser {
         return json.substring(start, end).replace("\\n", " ").replace("\\'", "'");
     }
 
-    public static String[] parseKeywords(String json, KeyWordsExtractor extractor) {
+    public static ArrayList<String> parseKeywords(String json, KeyWordsExtractor extractor) {
         int start = json.indexOf("web_detection {");
         ArrayList<String> keywords = new ArrayList<>();
         Scanner scanner = new Scanner(json.substring(start + 16));
@@ -31,6 +31,6 @@ public class Parser {
         keywords.addAll(extractor.getKeywords(parseText(json)));
 
 
-        return keywords.toArray(new String[keywords.size()]);
+        return keywords;
     }
 }

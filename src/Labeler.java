@@ -21,13 +21,12 @@ import java.util.List;
 public class Labeler {
     private static String[] dirs;
     private static File image_db = new File("db/image_db");
-    private static FileWriter image_db_writer;
     private static File keyw_db = new File("db/keyw_db");
-    private static FileWriter keyw_db_writer;
+    private static ImageDatabase image_db_obj = new ImageDatabase();
+    private static KeywordDatabase keyw_db_obj = new KeywordDatabase();
     public static void main(String... args) throws Exception {
         KeyWordsExtractor extractor = new KeyWordsExtractor("dics/words.txt");
-        image_db_writer = new FileWriter(image_db);
-        keyw_db_writer = new FileWriter(keyw_db);
+
         dirs = args;
         // Instantiates a client
         try (ImageAnnotatorClient vision = ImageAnnotatorClient.create()) {
@@ -38,10 +37,12 @@ public class Labeler {
                     File directory = new File(dir);
                     File[] filenames = directory.listFiles();
                     for (File image : filenames) {
-                        processImage(vision, extractor, image.getAbsolutePath());
+                        processImage(vision, extractor, image.getPath());
                     }
                 }
             }
+            image_db_obj.writeToFile(image_db.getPath());
+            keyw_db_obj.writeToFile(keyw_db.getPath());
         }
     }
 
@@ -72,9 +73,13 @@ public class Labeler {
         BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
         //System.out.println(response);
         String text = Parser.parseText(response.toString());
-        String[] keywords = Parser.parseKeywords(response.toString(), extractor);
+        ArrayList<String> keywords = Parser.parseKeywords(response.toString(), extractor);
+        image_db_obj.addImage(filePath, text, keywords);
+        for (String word : keywords) {
+            keyw_db_obj.addImage(word, filePath);
+        }
         System.out.println("Text: " + text);
-        System.out.println("Keywords: " + Arrays.toString(keywords));
+        System.out.println("Keywords: " + keywords.toString());
         
         System.out.println("\n--------------------------------\n");
     }
