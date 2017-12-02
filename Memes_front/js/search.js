@@ -9,13 +9,27 @@ let search = function() {
         dataType: "text",
         success: function(data) {
             console.log(data);
-            displayResults(JSON.parse(data));
+            let json = JSON.parse(data);
+            if (json.length > 0) {
+                displayResults(json);
+            } else {
+                displayNoResults();
+            }
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus + ": " + errorThrown);
+        error: function () {
+            displayNoResults();
         }
     })
 };
+
+function displayNoResults() {
+    $("#memes_small").empty();
+    let $display = $("#display");
+    $display.empty();
+
+    let $noresults = $('<p>No results...</p>');
+    $display.append($noresults);
+}
 
 function displayResults(data) {
     $("#memes_small").empty();
