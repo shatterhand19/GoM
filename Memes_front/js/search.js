@@ -6,10 +6,10 @@ let search = function() {
     // let data = buildTestData();
     // displayResults(data);
     $.ajax(request, {
-        dataType: "application/json",
+        dataType: "text",
         success: function(data) {
             console.log(data);
-            displayResults(data);
+            displayResults(JSON.parse(data));
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus + ": " + errorThrown);
