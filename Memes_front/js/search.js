@@ -47,7 +47,7 @@ function displayImage(img) {
     $img.attr('src', img.path);
     $img.appendTo($imgdiv);
     $imgdiv.addClass('meme');
-    $imgdiv.hover(function () {
+    $imgdiv.click(function () {
         setDisplay(img);
     });
     $imgdiv.appendTo('#memes_small');
