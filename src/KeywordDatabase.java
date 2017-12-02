@@ -8,12 +8,14 @@ import java.util.*;
  */
 public class KeywordDatabase {
     HashMap<String, ArrayList<String>> word_image = new HashMap<>();
+    String path;
 
     public KeywordDatabase() {
 
     }
 
     public KeywordDatabase(String dbPath) {
+        path = dbPath;
         try (Scanner scanner = new Scanner(new File(dbPath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -34,10 +36,22 @@ public class KeywordDatabase {
     }
 
     public ArrayList<String> getImages(String keyword) {
-        return word_image.getOrDefault(keyword, null);
+        if (word_image.containsKey(keyword)) {
+            return word_image.get(keyword);
+        } else {
+            ArrayList<String> images = null;
+            for (String k : word_image.keySet()) {
+                if (k.contains(keyword)) {
+                    if (images == null) images = new ArrayList<>();
+                    images.addAll(word_image.get(k));
+                }
+            }
+            return images;
+        }
     }
 
     public void writeToFile(String dbPath) {
+        if (dbPath == null) dbPath = path;
         ArrayList<String> keywords = new ArrayList<>(word_image.keySet());
         Collections.sort(keywords);
         try (FileWriter writer = new FileWriter(dbPath)) {

@@ -41,8 +41,6 @@ public class Labeler {
                     }
                 }
             }
-            image_db_obj.writeToFile(image_db.getPath());
-            keyw_db_obj.writeToFile(keyw_db.getPath());
         }
     }
 
@@ -73,15 +71,21 @@ public class Labeler {
         BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
         //System.out.println(response);
         String text = Parser.parseText(response.toString());
-        ArrayList<String> keywords = Parser.parseKeywords(response.toString(), extractor);
-        image_db_obj.addImage(filePath, text, keywords);
-        for (String word : keywords) {
-            keyw_db_obj.addImage(word, filePath);
+        if (text.length() == 0) {
+            Files.deleteIfExists(Paths.get(filePath));
+        } else {
+            ArrayList<Keyword> keywords = Parser.parseKeywords(response.toString(), extractor);
+            image_db_obj.addImage(filePath, text, keywords);
+            for (String word : image_db_obj.getKeywords(filePath)) {
+                keyw_db_obj.addImage(word, filePath);
+            }
+            image_db_obj.writeToFile(image_db.getPath());
+            keyw_db_obj.writeToFile(keyw_db.getPath());
+            System.out.println("Text: " + text);
+            System.out.println("Keywords: " + keywords.toString());
+
+            System.out.println("\n--------------------------------\n");
         }
-        System.out.println("Text: " + text);
-        System.out.println("Keywords: " + keywords.toString());
-        
-        System.out.println("\n--------------------------------\n");
     }
 
 }

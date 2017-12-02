@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -20,14 +21,15 @@ public class KeyWordsExtractor {
 
     public ArrayList<String> getKeywords(String sentence) {
         String[] sentenceWords = sentence.split("\\W+");
-        ArrayList<String> foundKeywords = new ArrayList<>();
+        HashSet<String> foundKeywords = new HashSet<>();
         for (int i = 0; i < sentenceWords.length; i++) {
             String word = sentenceWords[i].toLowerCase();
             if (Collections.binarySearch(words, word) > 0) {
                 foundKeywords.add(word);
             }
         }
-        Collections.sort(foundKeywords);
-        return foundKeywords;
+        ArrayList<String> foundKw = new ArrayList<>(foundKeywords);
+        Collections.sort(foundKw);
+        return foundKw;
     }
 }

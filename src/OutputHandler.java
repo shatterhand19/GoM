@@ -38,7 +38,12 @@ final class OutputHandler {
         }
 
         //If the file type is supported
-        File file = new File(System.getProperty("user.dir") + "/Memes_front", fileName);
+        File file;
+        if (fileName.startsWith("Memes_front")) {
+            file = new File(System.getProperty("user.dir"), fileName);
+        } else {
+            file = new File(System.getProperty("user.dir") + "/Memes_front", fileName);
+        }
         System.out.println(file.getPath());
         int numOfBytes = (int) file.length();
         try {
@@ -53,8 +58,7 @@ final class OutputHandler {
                 //Write the content type by getting it from the database or a default one
                 out.writeBytes(extensions.getOrDefault(getExtension(fileName), "Content-Type:text/plain; charset=UTF-8\r\n"));
 
-                //Write length of file
-                out.writeBytes("Content-Length:" + numOfBytes + "\r\n");
+
 
                 out.writeBytes("\r\n");
                 //Write file
@@ -68,6 +72,21 @@ final class OutputHandler {
             //If the file is not found
             System.out.println("File not found: " + fileName);
         }
+    }
+
+    public static void sendJson(String json, DataOutputStream out) throws IOException {
+        out.writeBytes("HTTP/1.1 200 OK\r\n");
+
+        //Write length of file
+        out.writeBytes("Content-Length:" + json.getBytes().length + "\r\n");
+
+        //Write the content type by getting it from the database or a default one
+        out.writeBytes("Content-Type:application/json; charset=UTF-8\r\n");
+
+        out.writeBytes("\r\n");
+        //Write file
+        out.write(json.getBytes(), 0, json.getBytes().length);
+        out.flush();
     }
 
     /**
