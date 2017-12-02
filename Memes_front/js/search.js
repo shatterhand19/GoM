@@ -59,6 +59,7 @@ function displayImage(img) {
 function setDisplay(img) {
     let $img = $("<img>");
     $img.attr('src', img.path);
+    $img.attr('onclick', "copyDisplay()");
     let $helper = $("<span>");
     $helper.addClass("helper");
     let $list = buildKeywordsList(img);
@@ -137,4 +138,11 @@ function buildTestData() {
         data.push({ path: "test_img/1 (" + i + ").jpg", keywords: [ "example", "other example" ]});
     }
     return data;
+}
+
+function copyDisplay() {
+    let display = $("#display img");
+    display.select();
+    document.execCommand("copy");
+    document.selection.empty();
 }
